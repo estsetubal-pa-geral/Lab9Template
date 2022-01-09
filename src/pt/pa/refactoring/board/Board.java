@@ -73,17 +73,22 @@ public class Board {
 
     // Returns a board drawing, with white on top
     public String getBoardDrawing() {
-        String out = "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("    0   1   2   3   4   5   6   7\n");
+        sb.append("  +---------------------------------+\n");
         for (int i = 0; i < boxes.length; i++) {
+            sb.append(String.format(((Integer) i).toString(), "00") +" | ");
             for (int j = 0; j < boxes[i].length; j++) {
                 if (boxes[i][j].getPiece() == null) {
-                    out += "\t";
+                    sb.append("\t");
                 } else {
-                    out += boxes[i][j].getPiece().getSymbol() + "\t";
+                    sb.append(boxes[i][j].getPiece().getSymbol() + "\t");
+                    // sb.append(Integer.toString(i)+Integer.toString(j)+"\t");
                 }
             }
-            out += "\n";
+            sb.append("|\n");
         }
-        return out;
+        sb.append("  +---------------------------------+\n");
+        return sb.toString();
     }
 }
